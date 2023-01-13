@@ -1,56 +1,56 @@
-#include <cmath>
-#include <vector>
-#include <iostream>
-#include <algorithm>
+#include "visualize.h"
 
 
-template<typename T>
-inline T square(const T x) {
-	return x * x;
+namespace {
+	template<typename T>
+	inline T square(const T x) {
+		return x * x;
+	}
+
+
+	void get_color_wheel(std::vector<float>& color_wheel) {
+		constexpr int RY = 15;
+		constexpr int YG = 6;
+		constexpr int GC = 4;
+		constexpr int CB = 11;
+		constexpr int BM = 13;
+		constexpr int MR = 6;
+		constexpr int ncols = RY + YG + GC + CB + BM + MR;
+		color_wheel.resize(ncols * 3, 0.f);
+		int col{0};
+		for (int i = col; i < col + RY; ++i) {
+			color_wheel[3 * i]     = 255;
+			color_wheel[3 * i + 1] = std::floor(255 * ((i - col) / float(RY)));
+		}
+		col += RY;
+		for (int i = col; i < col + YG; ++i) {
+			color_wheel[3 * i]     = 255 - std::floor(255 * ((i - col) / float(YG)));
+			color_wheel[3 * i + 1] = 255;
+		}
+		col += YG;
+		for (int i = col; i < col + GC; ++i) {
+			color_wheel[3 * i + 1] = 255;
+			color_wheel[3 * i + 2] = std::floor(255 * ((i - col) / float(GC)));
+		}
+		col += GC;
+		for (int i = col; i < col + CB; ++i) {
+			color_wheel[3 * i + 1] = 255 - std::floor(255 * ((i - col) / float(CB)));
+			color_wheel[3 * i + 2] = 255;
+		}
+		col += CB;
+		for (int i = col; i < col + BM; ++i) {
+			color_wheel[3 * i + 2] = 255;
+			color_wheel[3 * i]     = std::floor(255 * ((i - col) / float(BM)));
+		}
+		col += BM;
+		for (int i = col; i < col + MR; ++i) {
+			color_wheel[3 * i + 2] = 255 - std::floor(255 * ((i - col) / float(MR)));
+			color_wheel[3 * i]     = 255;
+		}
+	}
 }
 
-
-void get_color_wheel(std::vector<float>& color_wheel) {
-	constexpr int RY = 15;
-	constexpr int YG = 6;
-	constexpr int GC = 4;
-	constexpr int CB = 11;
-	constexpr int BM = 13;
-	constexpr int MR = 6;
-	constexpr int ncols = RY + YG + GC + CB + BM + MR;
-	color_wheel.resize(ncols * 3, 0.f);
-	int col{0};
-	for (int i = col; i < col + RY; ++i) {
-		color_wheel[3 * i]     = 255;
-		color_wheel[3 * i + 1] = std::floor(255 * ((i - col) / float(RY)));
-	}
-	col += RY;
-	for (int i = col; i < col + YG; ++i) {
-		color_wheel[3 * i]     = 255 - std::floor(255 * ((i - col) / float(YG)));
-		color_wheel[3 * i + 1] = 255;
-	}
-	col += YG;
-	for (int i = col; i < col + GC; ++i) {
-		color_wheel[3 * i + 1] = 255;
-		color_wheel[3 * i + 2] = std::floor(255 * ((i - col) / float(GC)));
-	}
-	col += GC;
-	for (int i = col; i < col + CB; ++i) {
-		color_wheel[3 * i + 1] = 255 - std::floor(255 * ((i - col) / float(CB)));
-		color_wheel[3 * i + 2] = 255;
-	}
-	col += CB;
-	for (int i = col; i < col + BM; ++i) {
-		color_wheel[3 * i + 2] = 255;
-		color_wheel[3 * i]     = std::floor(255 * ((i - col) / float(BM)));
-	}
-	col += BM;
-	for (int i = col; i < col + MR; ++i) {
-		color_wheel[3 * i + 2] = 255 - std::floor(255 * ((i - col) / float(MR)));
-		color_wheel[3 * i]     = 255;
-	}
-}
-
+	
 
 
 // 如果是视频推理, 或者是多帧推理, 这里的 vector 都可以拿到外面, 以免每次都申请空间释放空间

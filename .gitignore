@@ -2,3 +2,6 @@ CMakeCache/
 CMakeCache
 *.exe
 *.ppt
+*.so
+build
+build/
