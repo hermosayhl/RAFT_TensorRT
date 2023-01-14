@@ -5,3 +5,8 @@ CMakeCache
 *.so
 build
 build/
+*.pdb
+.idea/
+.idea
+cmake-build-debug/
+cmake-build-debug

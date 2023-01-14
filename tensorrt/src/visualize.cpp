@@ -1,52 +1,50 @@
 #include "visualize.h"
 
 
-namespace {
-	template<typename T>
-	inline T square(const T x) {
-		return x * x;
+template<typename T>
+inline T square(const T x) {
+	return x * x;
+}
+
+
+void get_color_wheel(std::vector<float>& color_wheel) {
+	constexpr int RY = 15;
+	constexpr int YG = 6;
+	constexpr int GC = 4;
+	constexpr int CB = 11;
+	constexpr int BM = 13;
+	constexpr int MR = 6;
+	constexpr int ncols = RY + YG + GC + CB + BM + MR;
+	color_wheel.resize(ncols * 3, 0.f);
+	int col{0};
+	for (int i = col; i < col + RY; ++i) {
+		color_wheel[3 * i]     = 255;
+		color_wheel[3 * i + 1] = std::floor(255 * ((i - col) / float(RY)));
 	}
-
-
-	void get_color_wheel(std::vector<float>& color_wheel) {
-		constexpr int RY = 15;
-		constexpr int YG = 6;
-		constexpr int GC = 4;
-		constexpr int CB = 11;
-		constexpr int BM = 13;
-		constexpr int MR = 6;
-		constexpr int ncols = RY + YG + GC + CB + BM + MR;
-		color_wheel.resize(ncols * 3, 0.f);
-		int col{0};
-		for (int i = col; i < col + RY; ++i) {
-			color_wheel[3 * i]     = 255;
-			color_wheel[3 * i + 1] = std::floor(255 * ((i - col) / float(RY)));
-		}
-		col += RY;
-		for (int i = col; i < col + YG; ++i) {
-			color_wheel[3 * i]     = 255 - std::floor(255 * ((i - col) / float(YG)));
-			color_wheel[3 * i + 1] = 255;
-		}
-		col += YG;
-		for (int i = col; i < col + GC; ++i) {
-			color_wheel[3 * i + 1] = 255;
-			color_wheel[3 * i + 2] = std::floor(255 * ((i - col) / float(GC)));
-		}
-		col += GC;
-		for (int i = col; i < col + CB; ++i) {
-			color_wheel[3 * i + 1] = 255 - std::floor(255 * ((i - col) / float(CB)));
-			color_wheel[3 * i + 2] = 255;
-		}
-		col += CB;
-		for (int i = col; i < col + BM; ++i) {
-			color_wheel[3 * i + 2] = 255;
-			color_wheel[3 * i]     = std::floor(255 * ((i - col) / float(BM)));
-		}
-		col += BM;
-		for (int i = col; i < col + MR; ++i) {
-			color_wheel[3 * i + 2] = 255 - std::floor(255 * ((i - col) / float(MR)));
-			color_wheel[3 * i]     = 255;
-		}
+	col += RY;
+	for (int i = col; i < col + YG; ++i) {
+		color_wheel[3 * i]     = 255 - std::floor(255 * ((i - col) / float(YG)));
+		color_wheel[3 * i + 1] = 255;
+	}
+	col += YG;
+	for (int i = col; i < col + GC; ++i) {
+		color_wheel[3 * i + 1] = 255;
+		color_wheel[3 * i + 2] = std::floor(255 * ((i - col) / float(GC)));
+	}
+	col += GC;
+	for (int i = col; i < col + CB; ++i) {
+		color_wheel[3 * i + 1] = 255 - std::floor(255 * ((i - col) / float(CB)));
+		color_wheel[3 * i + 2] = 255;
+	}
+	col += CB;
+	for (int i = col; i < col + BM; ++i) {
+		color_wheel[3 * i + 2] = 255;
+		color_wheel[3 * i]     = std::floor(255 * ((i - col) / float(BM)));
+	}
+	col += BM;
+	for (int i = col; i < col + MR; ++i) {
+		color_wheel[3 * i + 2] = 255 - std::floor(255 * ((i - col) / float(MR)));
+		color_wheel[3 * i]     = 255;
 	}
 }
 
@@ -114,13 +112,3 @@ void flow_to_image_inplementation(
 	}
 }
 
-
-extern "C" {
-	void flow_to_image(
-			unsigned char* result,
-			float* flow,
-			const int height,
-			const int width) {
-		flow_to_image_inplementation(result, flow, height, width);
-	}
-}
