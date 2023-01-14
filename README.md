@@ -77,6 +77,10 @@ trtexec --onnx=../onnxruntime/RAFT_simplified.onnx \
         --saveEngine=../tensorrt/engine/RAFT.plan
 ```
 
+目前只测了 float32 的速度，比较慢，后续可能需要热点分析、自定义算子来优化。
+
+![img](markdown_images/v2-7cb9f69cf915d7dcec35ceaf7912d292_1440w.png)
+
 也可以使用 Polygraphy 工具得到 TensorRT 工具，同时比较 onnxruntime，检验精度是否对齐
 
 ```shell
@@ -93,7 +97,17 @@ polygraphy run ../onnxruntime/RAFT_simplified.onnx \
 	--val-range 'image1:[0,255]' 'image2:[0,255]'
 ```
 
-用法和 trtexec 很类似，但支持动态 shape 时的写法很不一样，上面两种写法是可以的。
+用法和 trtexec 很类似，但支持动态 shape 时的写法很不一样，上面两种写法是可以的，对输出测试精度是否对齐，可以看出，对的不是很齐，个人猜测是迭代次数太多导致的。
+
+![img](markdown_images/v2-630d2fd98fb010636027f54db0ca73b6_1440w.png)
+
+绝对误差
+
+![img](markdown_images/v2-31a6ff68ca90efd83fac6b3122c29dba_1440w.png)
+
+相对误差
+
+![img](markdown_images/v2-fe793752481ed404e14cd7c5be131418_1440w.png)
 
 同时 polygraphy 也可以用于简化 onnx 模型，性质类似于 onnx-simplifier，输入以下命令
 
