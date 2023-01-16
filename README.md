@@ -2,7 +2,7 @@
 
 **TensorRT** deployment for **ECCV 2020 best paper** 《*RAFT: Recurrent All Pairs Field Transforms for Optical Flow*》。
 
-[paper](https://arxiv.org/pdf/2003.12039.pdf)    [github](https://github.com/princeton-vl/RAFT)   
+[paper](https://arxiv.org/pdf/2003.12039.pdf)    [github](https://github.com/princeton-vl/RAFT)   [知乎]()
 
 ![image-20230114171837049](markdown_images/image-20230114171837049.png)
 
