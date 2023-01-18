@@ -1,0 +1,160 @@
+polygraphy run ../onnxruntime/RAFT_simplified.onnx --fp16 --onnxrt --trt --workspace 1000000000 --save-engine=../tensorrt/engine/RAFT_fp16.plan --atol 0.1 --verbose --trt-min-shapes 'image1:[1,3,256,256]' 'image2:[1,3,256,256]' --trt-opt-shapes 'image1:[1,3,440,1024]' 'image2:[1,3,440,1024]' --trt-max-shapes 'image1:[1,3,768,1024]' 'image2:[1,3,768,1024]' --input-shapes 'image1:[1,3,440,1024]' 'image2:[1,3,440,1024]' --val-range 'image1:[0,255]' 'image2:[0,255]'
+[V] Model: ../onnxruntime/RAFT_simplified.onnx
+[W] --workspace is deprecated and will be removed in Polygraphy 0.45.0. Use --pool-limit workspace:1000000000 instead.
+[I] RUNNING | Command: D:\environments\Miniconda\envs\cuda_10.2\Scripts\polygraphy run ../onnxruntime/RAFT_simplified.onnx --fp16 --onnxrt --trt --workspace 1000000000 --save-engine=../tensorrt/engine/RAFT_fp16.plan --atol 0.1 --verbose --trt-min-shapes image1:[1,3,256,256] image2:[1,3,256,256] --trt-opt-shapes image1:[1,3,440,1024] image2:[1,3,440,1024] --trt-max-shapes image1:[1,3,768,1024] image2:[1,3,768,1024] --input-shapes image1:[1,3,440,1024] image2:[1,3,440,1024] --val-range image1:[0,255] image2:[0,255]
+[V] Loaded Module: polygraphy | Version: 0.43.1 | Path: ['D:\\environments\\Miniconda\\envs\\cuda_10.2\\lib\\site-packages\\polygraphy']
+[V] Loaded extension modules: []
+[V] Loaded Module: tensorrt | Version: 8.5.1.7 | Path: ['D:\\environments\\Miniconda\\envs\\cuda_10.2\\lib\\site-packages\\tensorrt']
+[I] Will generate inference input data according to provided TensorMetadata: {image1 [shape=(1, 3, 440, 1024)],
+     image2 [shape=(1, 3, 440, 1024)]}
+[I] onnxrt-runner-N0-01/18/23-21:55:07  | Activating and starting inference
+[V] Loaded Module: onnxruntime | Version: 1.13.1 | Path: ['D:\\environments\\Miniconda\\envs\\cuda_10.2\\lib\\site-packages\\onnxruntime']
+[I] Creating ONNX-Runtime Inference Session with providers: ['CPUExecutionProvider']
+[V] Loaded Module: numpy | Version: 1.21.6 | Path: ['D:\\environments\\Miniconda\\envs\\cuda_10.2\\lib\\site-packages\\numpy']
+[V] Loading inputs from data loader
+[V] Generating data using numpy seed: 1
+[V] Input tensor: image1 | Generating input data in range: [0.0, 255.0]
+[V] Input tensor: image2 | Generating input data in range: [0.0, 255.0]
+[I] onnxrt-runner-N0-01/18/23-21:55:07
+    ---- Inference Input(s) ----
+    {image1 [dtype=float32, shape=(1, 3, 440, 1024)],
+     image2 [dtype=float32, shape=(1, 3, 440, 1024)]}
+[V] Runner input metadata is: {image1 [dtype=float32, shape=('image1_batch', 3, 'image1_height', 'image1_width')],
+     image2 [dtype=float32, shape=('image2_batch', 3, 'image2_height', 'image2_width')]}
+[I] onnxrt-runner-N0-01/18/23-21:55:07
+    ---- Inference Output(s) ----
+    {flow [dtype=float32, shape=(1, 2, 440, 1024)]}
+[I] onnxrt-runner-N0-01/18/23-21:55:07  | Completed 1 iteration(s) in 5646 ms | Average inference time: 5646 ms.
+[I] trt-runner-N0-01/18/23-21:55:07     | Activating and starting inference
+[V] [MemUsageChange] Init CUDA: CPU +251, GPU +0, now: CPU 6210, GPU 1116 (MiB)
+[V] [MemUsageChange] Init builder kernel library: CPU +113, GPU +24, now: CPU 6412, GPU 1140 (MiB)
+[V] ----------------------------------------------------------------
+[V] Input filename:   D:\deployment\tensorrt\RAFT\onnxruntime\RAFT_simplified.onnx
+[V] ONNX IR version:  0.0.7
+[V] Opset version:    11
+[V] Producer name:    pytorch
+[V] Producer version: 1.10
+[V] Domain:
+[V] Model version:    0
+[V] Doc string:
+[V] ----------------------------------------------------------------
+[W] onnx2trt_utils.cpp:377: Your ONNX model has been generated with INT64 weights, while TensorRT does not natively support INT64. Attempting to cast down to INT32.
+[V]     Setting TensorRT Optimization Profiles
+[V]     Input tensor: image1 (dtype=DataType.FLOAT, shape=(-1, 3, -1, -1)) | Setting input tensor shapes to: (min=[1, 3, 256, 256], opt=[1, 3, 440, 1024], max=[1, 3, 768, 1024])
+[V]     Input tensor: image2 (dtype=DataType.FLOAT, shape=(-1, 3, -1, -1)) | Setting input tensor shapes to: (min=[1, 3, 256, 256], opt=[1, 3, 440, 1024], max=[1, 3, 768, 1024])
+[I]     Configuring with profiles: [Profile().add('image1', min=[1, 3, 256, 256], opt=[1, 3, 440, 1024], max=[1, 3, 768, 1024]).add('image2', min=[1, 3, 256, 256], opt=[1, 3, 440, 1024], max=[1, 3, 768, 1024])]
+[I] Building engine with configuration:
+    Flags                  | [FP16]
+    Engine Capability      | EngineCapability.DEFAULT
+    Memory Pools           | [WORKSPACE: 953.67 MiB]
+    Tactic Sources         | [CUBLAS, CUBLAS_LT, CUDNN, EDGE_MASK_CONVOLUTIONS, JIT_CONVOLUTIONS]
+    Profiling Verbosity    | ProfilingVerbosity.DETAILED
+[W] Using PreviewFeature::kFASTER_DYNAMIC_SHAPES_0805 can help improve performance and resolve potential functional issues.
+[V] [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +0, GPU +8, now: CPU 7153, GPU 1486 (MiB)
+[V] [MemUsageChange] Init cuDNN: CPU +0, GPU +8, now: CPU 7153, GPU 1494 (MiB)
+[W] TensorRT was linked against cuDNN 8.6.0 but loaded cuDNN 8.4.1
+[V] Global timing cache in use. Profiling results in this builder pass will be stored.
+[V] Some tactics do not have sufficient workspace memory to run. Increasing workspace size will enable more tactics, please check verbose output for requested sizes.
+[W] Myelin graph with multiple dynamic values may have poor performance if they differ. Dynamic values are:
+[W]  image1_height
+[W]  image1_width
+[V] [GraphReduction] The approximate region cut reduction algorithm is called.
+[V] Total Activation Memory: 12835807744
+[V] Detected 2 inputs and 1 output network tensors.
+[V] Total Host Persistent Memory: 193488
+[V] Total Device Persistent Memory: 6734336
+[V] Total Scratch Memory: 454017536
+[V] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 177 MiB, GPU 5568 MiB
+[V] [BlockAssignment] Started assigning block shifts. This will take 580 steps to complete.
+[V] [BlockAssignment] Algorithm ShiftNTopDown took 677.85ms to assign 51 blocks to 580 nodes requiring 1496891904 bytes.
+[V] Total Activation Memory: 1496891904
+[V] [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +1, GPU +8, now: CPU 7233, GPU 1781 (MiB)
+[V] [MemUsageChange] Init cuDNN: CPU +0, GPU +8, now: CPU 7233, GPU 1789 (MiB)
+[W] TensorRT encountered issues when converting weights between types and that could affect accuracy.
+[W] If this is not the desired behavior, please modify the weights or retrain with regularization to adjust the magnitude of the weights.
+[W] Check verbose logs for the list of affected weights.
+[W] - 207 weights are affected by this issue: Detected subnormal FP16 values.
+[W] - 29 weights are affected by this issue: Detected values less than smallest positive FP16 subnormal value and converted them to the FP16 minimum subnormalized value.
+[V] [MemUsageChange] TensorRT-managed allocation in building engine: CPU +29, GPU +38, now: CPU 29, GPU 38 (MiB)
+[I] Finished engine building in 403.486 seconds
+[V] Loaded engine size: 33 MiB
+[V] [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +0, GPU +8, now: CPU 7153, GPU 1626 (MiB)
+[V] [MemUsageChange] Init cuDNN: CPU +0, GPU +8, now: CPU 7153, GPU 1634 (MiB)
+[V] [MemUsageChange] TensorRT-managed allocation in engine deserialization: CPU +0, GPU +33, now: CPU 0, GPU 33 (MiB)
+[I] Saving engine to ../tensorrt/engine/RAFT_fp16.plan
+[V] [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +0, GPU +8, now: CPU 7119, GPU 1632 (MiB)
+[V] [MemUsageChange] Init cuDNN: CPU +0, GPU +8, now: CPU 7119, GPU 1640 (MiB)
+[V] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +1434, now: CPU 0, GPU 1467 (MiB)
+[V] Found candidate CUDA libraries: ['D:\\HPC\\tools\\CUDA\\10.2\\development\\bin\\cudart64_102.dll']
+[I] trt-runner-N0-01/18/23-21:55:07
+    ---- Inference Input(s) ----
+    {image1 [dtype=float32, shape=(1, 3, 440, 1024)],
+     image2 [dtype=float32, shape=(1, 3, 440, 1024)]}
+[V] Runner input metadata is: {image1 [dtype=float32, shape=(1, 3, -1, -1)],
+     image2 [dtype=float32, shape=(1, 3, -1, -1)]}
+[I] trt-runner-N0-01/18/23-21:55:07
+    ---- Inference Output(s) ----
+    {flow [dtype=float32, shape=(1, 2, 440, 1024)]}
+[I] trt-runner-N0-01/18/23-21:55:07     | Completed 1 iteration(s) in 159 ms | Average inference time: 159 ms.
+[V] Successfully ran: ['onnxrt-runner-N0-01/18/23-21:55:07', 'trt-runner-N0-01/18/23-21:55:07']
+[I] Accuracy Comparison | onnxrt-runner-N0-01/18/23-21:55:07 vs. trt-runner-N0-01/18/23-21:55:07
+[I]     Comparing Output: 'flow' (dtype=float32, shape=(1, 2, 440, 1024)) with 'flow' (dtype=float32, shape=(1, 2, 440, 1024))
+[I]         Tolerance: [abs=0.1, rel=1e-05] | Checking elemwise error
+[I]         onnxrt-runner-N0-01/18/23-21:55:07: flow | Stats: mean=63.203, std-dev=79.192, var=6271.4, median=18.49, min=-74.019 at (0, 0, 192, 47), max=237.33 at (0, 0, 112, 343), avg-magnitude=70.709
+[I]             ---- Histogram ----
+                Bin Range      |  Num Elems | Visualization
+                (-101 , -64.6) |       5261 |
+                (-64.6, -28.5) |      52198 | ######
+                (-28.5, 7.55 ) |     189205 | ########################
+                (7.55 , 43.6 ) |     314458 | ########################################
+                (43.6 , 79.7 ) |       9641 | #
+                (79.7 , 116  ) |      10430 | #
+                (116  , 152  ) |      25427 | ###
+                (152  , 188  ) |     272668 | ##################################
+                (188  , 224  ) |      21749 | ##
+                (224  , 260  ) |         83 |
+[I]         trt-runner-N0-01/18/23-21:55:07: flow | Stats: mean=53.892, std-dev=69.236, var=4793.6, median=19.249, min=-100.63 at (0, 0, 102, 7), max=260 at (0, 0, 64, 383), avg-magnitude=62.753
+[I]             ---- Histogram ----
+                Bin Range      |  Num Elems | Visualization
+                (-101 , -64.6) |      22952 | ##
+                (-64.6, -28.5) |      37885 | ####
+                (-28.5, 7.55 ) |     155172 | #################
+                (7.55 , 43.6 ) |     353943 | ########################################
+                (43.6 , 79.7 ) |       7215 |
+                (79.7 , 116  ) |       9074 | #
+                (116  , 152  ) |     242108 | ###########################
+                (152  , 188  ) |      67136 | #######
+                (188  , 224  ) |       3546 |
+                (224  , 260  ) |       2089 |
+[I]         Error Metrics: flow
+[I]             Minimum Required Tolerance: elemwise error | [abs=161.84] OR [rel=5.6109e+05] (requirements may be lower if both abs/rel tolerances are set)
+[I]             Absolute Difference | Stats: mean=15.328, std-dev=15.968, var=254.96, median=9.4301, min=0 at (0, 0, 107, 449), max=161.84 at (0, 0, 12, 344), avg-magnitude=15.328
+[I]                 ---- Histogram ----
+                    Bin Range    |  Num Elems | Visualization
+                    (0   , 16.2) |     545742 | ########################################
+                    (16.2, 32.4) |     247090 | ##################
+                    (32.4, 48.6) |      80957 | #####
+                    (48.6, 64.7) |      12313 |
+                    (64.7, 80.9) |       6733 |
+                    (80.9, 97.1) |       4647 |
+                    (97.1, 113 ) |       2602 |
+                    (113 , 129 ) |        523 |
+                    (129 , 146 ) |        448 |
+                    (146 , 162 ) |         65 |
+[I]             Relative Difference | Stats: mean=2.8615, std-dev=667.73, var=4.4586e+05, median=0.23479, min=0 at (0, 0, 107, 449), max=5.6109e+05 at (0, 1, 6, 417), avg-magnitude=2.8615
+[I]                 ---- Histogram ----
+                    Bin Range            |  Num Elems | Visualization
+                    (0       , 5.61e+04) |     901117 | ########################################
+                    (5.61e+04, 1.12e+05) |          1 |
+                    (1.12e+05, 1.68e+05) |          0 |
+                    (1.68e+05, 2.24e+05) |          0 |
+                    (2.24e+05, 2.81e+05) |          1 |
+                    (2.81e+05, 3.37e+05) |          0 |
+                    (3.37e+05, 3.93e+05) |          0 |
+                    (3.93e+05, 4.49e+05) |          0 |
+                    (4.49e+05, 5.05e+05) |          0 |
+                    (5.05e+05, 5.61e+05) |          1 |
+[E]         FAILED | Output: 'flow' | Difference exceeds tolerance (rel=1e-05, abs=0.1)
+[E]     FAILED | Mismatched outputs: ['flow']
+[E] Accuracy Summary | onnxrt-runner-N0-01/18/23-21:55:07 vs. trt-runner-N0-01/18/23-21:55:07 | Passed: 0/1 iterations | Pass Rate: 0.0%
+[E] FAILED | Runtime: 694.023s | Command: D:\environments\Miniconda\envs\cuda_10.2\Scripts\polygraphy run ../onnxruntime/RAFT_simplified.onnx --fp16 --onnxrt --trt --workspace 1000000000 --save-engine=../tensorrt/engine/RAFT_fp16.plan --atol 0.1 --verbose --trt-min-shapes image1:[1,3,256,256] image2:[1,3,256,256] --trt-opt-shapes image1:[1,3,440,1024] image2:[1,3,440,1024] --trt-max-shapes image1:[1,3,768,1024] image2:[1,3,768,1024] --input-shapes image1:[1,3,440,1024] image2:[1,3,440,1024] --val-range image1:[0,255] image2:[0,255]

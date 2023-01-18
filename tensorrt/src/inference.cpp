@@ -45,7 +45,7 @@ int main() {
 	std::cout << "working dir==> " << std::filesystem::current_path().string() << "\n";
 	
 	/* TensorRT 引擎路径 */
-	const std::string tensorrt_engine_path("../engine/RAFT.plan");
+	const std::string tensorrt_engine_path("../engine/RAFT_fp32.plan");
 	assert(std::filesystem::exists(tensorrt_engine_path) && "engine file doesn't exist!");
 	
 	/* 反序列化得到 tensorrt 引擎 */
@@ -91,7 +91,6 @@ int main() {
 	AutoCudaMallocPointer<float> image2_buffer_gpu(image2_element_count, CUDA_DATA_TYPE::NORMAL_MEMORY, "image2_buffer_gpu");
 	AutoCudaMallocPointer<float> flow_buffer_gpu(output_element_count,   CUDA_DATA_TYPE::NORMAL_MEMORY, "flow_buffer_gpu");
 
-
 	/* 读取两帧图像 */
 	auto image1 = cv::imread("../images/input/frame_0016.png");
 	auto image2 = cv::imread("../images/input/frame_0017.png");
@@ -131,11 +130,16 @@ int main() {
 	});
 
 	/* 开始推理 */
-	auto infer_sign = context->executeV2(gpu_tensors.data());
-	if (infer_sign == false) {
-		std::cerr << "context->executeV2 failed\n";
-		return -3;
-	}
+	cuda_timer([&]() {
+		/* 目前测试的推理时间有问题 */
+		auto infer_sign = context->executeV2(gpu_tensors.data());
+		if (infer_sign == false) {
+			std::cerr << "context->executeV2 failed\n";
+			return -3;
+		}},
+		"fp16"
+	);
+	
 
 	/* 把推理结果从 GPU 传送到 CPU 的 buffer */
 	ck(cudaMemcpy(flow_buffer_cpu.get_pointer(), flow_buffer_gpu.get_pointer(), output_element_count * sizeof(float), cudaMemcpyDeviceToHost));

@@ -1,0 +1,194 @@
+trtexec --fp16 --loadEngine=../tensorrt/engine/RAFT_fp16.plan --verbose --minShapes=image1:1x3x256x256,image2:1x3x256x256 --optShapes=image1:1x3x440x1024,image2:1x3x440x1024 --maxShapes=image1:1x3x768x1024,image2:1x3x768x1024
+&&&& RUNNING TensorRT.trtexec [TensorRT v8501] # D:\HPC\tools\TensorRT\TensorRT-8.5.1.7\bin\trtexec.exe --fp16 --loadEngine=../tensorrt/engine/RAFT_fp16.plan --verbose --minShapes=image1:1x3x256x256,image2:1x3x256x256 --optShapes=image1:1x3x440x1024,image2:1x3x440x1024 --maxShapes=image1:1x3x768x1024,image2:1x3x768x1024
+[01/18/2023-22:39:14] [I] === Model Options ===
+[01/18/2023-22:39:14] [I] Format: *
+[01/18/2023-22:39:14] [I] Model:
+[01/18/2023-22:39:14] [I] Output:
+[01/18/2023-22:39:14] [I] === Build Options ===
+[01/18/2023-22:39:14] [I] Max batch: explicit batch
+[01/18/2023-22:39:14] [I] Memory Pools: workspace: default, dlaSRAM: default, dlaLocalDRAM: default, dlaGlobalDRAM: default
+[01/18/2023-22:39:14] [I] minTiming: 1
+[01/18/2023-22:39:14] [I] avgTiming: 8
+[01/18/2023-22:39:14] [I] Precision: FP32+FP16
+[01/18/2023-22:39:14] [I] LayerPrecisions:
+[01/18/2023-22:39:14] [I] Calibration:
+[01/18/2023-22:39:14] [I] Refit: Disabled
+[01/18/2023-22:39:14] [I] Sparsity: Disabled
+[01/18/2023-22:39:14] [I] Safe mode: Disabled
+[01/18/2023-22:39:14] [I] DirectIO mode: Disabled
+[01/18/2023-22:39:14] [I] Restricted mode: Disabled
+[01/18/2023-22:39:14] [I] Build only: Disabled
+[01/18/2023-22:39:14] [I] Save engine:
+[01/18/2023-22:39:14] [I] Load engine: ../tensorrt/engine/RAFT_fp16.plan
+[01/18/2023-22:39:14] [I] Profiling verbosity: 0
+[01/18/2023-22:39:14] [I] Tactic sources: Using default tactic sources
+[01/18/2023-22:39:14] [I] timingCacheMode: local
+[01/18/2023-22:39:14] [I] timingCacheFile:
+[01/18/2023-22:39:14] [I] Heuristic: Disabled
+[01/18/2023-22:39:14] [I] Preview Features: Use default preview flags.
+[01/18/2023-22:39:14] [I] Input(s)s format: fp32:CHW
+[01/18/2023-22:39:14] [I] Output(s)s format: fp32:CHW
+[01/18/2023-22:39:14] [I] Input build shape: image1=1x3x256x256+1x3x440x1024+1x3x768x1024
+[01/18/2023-22:39:14] [I] Input build shape: image2=1x3x256x256+1x3x440x1024+1x3x768x1024
+[01/18/2023-22:39:14] [I] Input calibration shapes: model
+[01/18/2023-22:39:14] [I] === System Options ===
+[01/18/2023-22:39:14] [I] Device: 0
+[01/18/2023-22:39:14] [I] DLACore:
+[01/18/2023-22:39:14] [I] Plugins:
+[01/18/2023-22:39:14] [I] === Inference Options ===
+[01/18/2023-22:39:14] [I] Batch: Explicit
+[01/18/2023-22:39:14] [I] Input inference shape: image1=1x3x440x1024
+[01/18/2023-22:39:14] [I] Input inference shape: image2=1x3x440x1024
+[01/18/2023-22:39:14] [I] Iterations: 10
+[01/18/2023-22:39:14] [I] Duration: 3s (+ 200ms warm up)
+[01/18/2023-22:39:14] [I] Sleep time: 0ms
+[01/18/2023-22:39:14] [I] Idle time: 0ms
+[01/18/2023-22:39:14] [I] Streams: 1
+[01/18/2023-22:39:14] [I] ExposeDMA: Disabled
+[01/18/2023-22:39:14] [I] Data transfers: Enabled
+[01/18/2023-22:39:14] [I] Spin-wait: Disabled
+[01/18/2023-22:39:14] [I] Multithreading: Disabled
+[01/18/2023-22:39:14] [I] CUDA Graph: Disabled
+[01/18/2023-22:39:14] [I] Separate profiling: Disabled
+[01/18/2023-22:39:14] [I] Time Deserialize: Disabled
+[01/18/2023-22:39:14] [I] Time Refit: Disabled
+[01/18/2023-22:39:14] [I] NVTX verbosity: 0
+[01/18/2023-22:39:14] [I] Persistent Cache Ratio: 0
+[01/18/2023-22:39:14] [I] Inputs:
+[01/18/2023-22:39:14] [I] === Reporting Options ===
+[01/18/2023-22:39:14] [I] Verbose: Enabled
+[01/18/2023-22:39:14] [I] Averages: 10 inferences
+[01/18/2023-22:39:14] [I] Percentiles: 90,95,99
+[01/18/2023-22:39:14] [I] Dump refittable layers:Disabled
+[01/18/2023-22:39:14] [I] Dump output: Disabled
+[01/18/2023-22:39:14] [I] Profile: Disabled
+[01/18/2023-22:39:14] [I] Export timing to JSON file:
+[01/18/2023-22:39:14] [I] Export output to JSON file:
+[01/18/2023-22:39:14] [I] Export profile to JSON file:
+[01/18/2023-22:39:14] [I]
+[01/18/2023-22:39:14] [I] === Device Information ===
+[01/18/2023-22:39:14] [I] Selected Device: NVIDIA GeForce GTX 1080 Ti
+[01/18/2023-22:39:14] [I] Compute Capability: 6.1
+[01/18/2023-22:39:14] [I] SMs: 28
+[01/18/2023-22:39:14] [I] Compute Clock Rate: 1.6325 GHz
+[01/18/2023-22:39:14] [I] Device Global Memory: 11264 MiB
+[01/18/2023-22:39:14] [I] Shared Memory per SM: 96 KiB
+[01/18/2023-22:39:14] [I] Memory Bus Width: 352 bits (ECC disabled)
+[01/18/2023-22:39:14] [I] Memory Clock Rate: 5.505 GHz
+[01/18/2023-22:39:14] [I]
+[01/18/2023-22:39:14] [I] TensorRT version: 8.5.1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::BatchedNMSDynamic_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::BatchedNMS_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::BatchTilePlugin_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::Clip_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::CoordConvAC version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::CropAndResizeDynamic version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::CropAndResize version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::DecodeBbox3DPlugin version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::DetectionLayer_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::EfficientNMS_Explicit_TF_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::EfficientNMS_Implicit_TF_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::EfficientNMS_ONNX_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::EfficientNMS_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::FlattenConcat_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::GenerateDetection_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::GridAnchor_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::GridAnchorRect_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::InstanceNormalization_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::InstanceNormalization_TRT version 2
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::LReLU_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::MultilevelCropAndResize_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::MultilevelProposeROI_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::MultiscaleDeformableAttnPlugin_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::NMSDynamic_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::NMS_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::Normalize_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::PillarScatterPlugin version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::PriorBox_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::ProposalDynamic version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::ProposalLayer_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::Proposal version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::PyramidROIAlign_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::Region_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::Reorg_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::ResizeNearest_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::ROIAlign_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::RPROI_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::ScatterND version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::SpecialSlice_TRT version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::Split version 1
+[01/18/2023-22:39:14] [V] [TRT] Registered plugin creator - ::VoxelGeneratorPlugin version 1
+[01/18/2023-22:39:14] [I] Engine loaded in 0.023795 sec.
+[01/18/2023-22:39:15] [I] [TRT] Loaded engine size: 33 MiB
+[01/18/2023-22:39:15] [V] [TRT] Trying to load shared library cublas64_10.dll
+[01/18/2023-22:39:15] [V] [TRT] Loaded shared library cublas64_10.dll
+[01/18/2023-22:39:15] [V] [TRT] Using cublas as plugin tactic source
+[01/18/2023-22:39:15] [V] [TRT] Using cublas as core library tactic source
+[01/18/2023-22:39:15] [I] [TRT] [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +0, GPU +8, now: CPU 8195, GPU 1354 (MiB)
+[01/18/2023-22:39:15] [V] [TRT] Trying to load shared library cudnn64_8.dll
+[01/18/2023-22:39:15] [V] [TRT] Loaded shared library cudnn64_8.dll
+[01/18/2023-22:39:15] [V] [TRT] Using cuDNN as plugin tactic source
+[01/18/2023-22:39:15] [V] [TRT] Using cuDNN as core library tactic source
+[01/18/2023-22:39:15] [I] [TRT] [MemUsageChange] Init cuDNN: CPU +1, GPU +10, now: CPU 8196, GPU 1364 (MiB)
+[01/18/2023-22:39:15] [W] [TRT] TensorRT was linked against cuDNN 8.6.0 but loaded cuDNN 8.4.1
+[01/18/2023-22:39:15] [V] [TRT] Deserialization required 339906 microseconds.
+[01/18/2023-22:39:15] [I] [TRT] [MemUsageChange] TensorRT-managed allocation in engine deserialization: CPU +0, GPU +33, now: CPU 0, GPU 33 (MiB)
+[01/18/2023-22:39:15] [I] Engine deserialized in 0.680639 sec.
+[01/18/2023-22:39:15] [V] [TRT] Trying to load shared library cublas64_10.dll
+[01/18/2023-22:39:15] [V] [TRT] Loaded shared library cublas64_10.dll
+[01/18/2023-22:39:15] [V] [TRT] Using cublas as plugin tactic source
+[01/18/2023-22:39:15] [V] [TRT] Using cublas as core library tactic source
+[01/18/2023-22:39:15] [I] [TRT] [MemUsageChange] Init cuBLAS/cuBLASLt: CPU +0, GPU +8, now: CPU 8198, GPU 1362 (MiB)
+[01/18/2023-22:39:15] [V] [TRT] Trying to load shared library cudnn64_8.dll
+[01/18/2023-22:39:15] [V] [TRT] Loaded shared library cudnn64_8.dll
+[01/18/2023-22:39:15] [V] [TRT] Using cuDNN as plugin tactic source
+[01/18/2023-22:39:15] [V] [TRT] Using cuDNN as core library tactic source
+[01/18/2023-22:39:15] [I] [TRT] [MemUsageChange] Init cuDNN: CPU +0, GPU +8, now: CPU 8198, GPU 1370 (MiB)
+[01/18/2023-22:39:15] [W] [TRT] TensorRT was linked against cuDNN 8.6.0 but loaded cuDNN 8.4.1
+[01/18/2023-22:39:15] [V] [TRT] Total per-runner device persistent memory is 6734336
+[01/18/2023-22:39:15] [V] [TRT] Total per-runner host persistent memory is 193488
+[01/18/2023-22:39:15] [V] [TRT] Allocated activation device memory of size 1496891904
+[01/18/2023-22:39:15] [I] [TRT] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +1434, now: CPU 0, GPU 1467 (MiB)
+[01/18/2023-22:39:15] [I] Setting persistentCacheLimit to 0 bytes.
+[01/18/2023-22:39:15] [V] Using enqueueV3.
+[01/18/2023-22:39:15] [I] Using random values for input image1
+[01/18/2023-22:39:16] [I] Created input binding for image1 with dimensions 1x3x440x1024
+[01/18/2023-22:39:16] [I] Using random values for input image2
+[01/18/2023-22:39:16] [I] Created input binding for image2 with dimensions 1x3x440x1024
+[01/18/2023-22:39:16] [I] Using random values for output flow
+[01/18/2023-22:39:16] [I] Created output binding for flow with dimensions 1x2x440x1024
+[01/18/2023-22:39:16] [I] Starting inference
+[01/18/2023-22:39:19] [I] Warmup completed 1 queries over 200 ms
+[01/18/2023-22:39:19] [I] Timing trace has 21 queries over 3.07733 s
+[01/18/2023-22:39:19] [I]
+[01/18/2023-22:39:19] [I] === Trace details ===
+[01/18/2023-22:39:19] [I] Trace averages of 10 runs:
+[01/18/2023-22:39:19] [I] Average on 10 runs - GPU latency: 146.134 ms - Host latency: 147.285 ms (enqueue 147.419 ms)
+[01/18/2023-22:39:19] [I] Average on 10 runs - GPU latency: 144.673 ms - Host latency: 145.825 ms (enqueue 145.836 ms)
+[01/18/2023-22:39:19] [I]
+[01/18/2023-22:39:19] [I] === Performance summary ===
+[01/18/2023-22:39:19] [I] Throughput: 6.82409 qps
+[01/18/2023-22:39:19] [I] Latency: min = 143.739 ms, max = 157.622 ms, mean = 146.458 ms, median = 146.022 ms, percentile(90%) = 147.861 ms, percentile(95%) = 150.922 ms, percentile(99%) = 157.622 ms
+[01/18/2023-22:39:19] [I] Enqueue Time: min = 144.015 ms, max = 158.257 ms, mean = 146.524 ms, median = 145.919 ms, percentile(90%) = 148.022 ms, percentile(95%) = 151.162 ms, percentile(99%) = 158.257 ms
+[01/18/2023-22:39:19] [I] H2D Latency: min = 0.856445 ms, max = 0.874451 ms, mean = 0.859212 ms, median = 0.857422 ms, percentile(90%) = 0.866699 ms, percentile(95%) = 0.86792 ms, percentile(99%) = 0.874451 ms
+[01/18/2023-22:39:19] [I] GPU Compute Time: min = 142.591 ms, max = 156.472 ms, mean = 145.307 ms, median = 144.858 ms, percentile(90%) = 146.717 ms, percentile(95%) = 149.775 ms, percentile(99%) = 156.472 ms
+[01/18/2023-22:39:19] [I] D2H Latency: min = 0.287598 ms, max = 0.313477 ms, mean = 0.291399 ms, median = 0.289917 ms, percentile(90%) = 0.291016 ms, percentile(95%) = 0.301514 ms, percentile(99%) = 0.313477 ms
+[01/18/2023-22:39:19] [I] Total Host Walltime: 3.07733 s
+[01/18/2023-22:39:19] [I] Total GPU Compute Time: 3.05145 s
+[01/18/2023-22:39:19] [W] * Throughput may be bound by Enqueue Time rather than GPU Compute and the GPU may be under-utilized.
+[01/18/2023-22:39:19] [W]   If not already in use, --useCudaGraph (utilize CUDA graphs where possible) may increase the throughput.
+[01/18/2023-22:39:19] [W] * GPU compute time is unstable, with coefficient of variance = 2.01838%.
+[01/18/2023-22:39:19] [W]   If not already in use, locking GPU clock frequency or adding --useSpinWait may improve the stability.
+[01/18/2023-22:39:19] [I] Explanations of the performance metrics are printed in the verbose logs.
+[01/18/2023-22:39:19] [V]
+[01/18/2023-22:39:19] [V] === Explanations of the performance metrics ===
+[01/18/2023-22:39:19] [V] Total Host Walltime: the host walltime from when the first query (after warmups) is enqueued to when the last query is completed.
+[01/18/2023-22:39:19] [V] GPU Compute Time: the GPU latency to execute the kernels for a query.
+[01/18/2023-22:39:19] [V] Total GPU Compute Time: the summation of the GPU Compute Time of all the queries. If this is significantly shorter than Total Host Walltime, the GPU may be under-utilized because of host-side overheads or data transfers.
+[01/18/2023-22:39:19] [V] Throughput: the observed throughput computed by dividing the number of queries by the Total Host Walltime. If this is significantly lower than the reciprocal of GPU Compute Time, the GPU may be under-utilized because of host-side overheads or data transfers.
+[01/18/2023-22:39:19] [V] Enqueue Time: the host latency to enqueue a query. If this is longer than GPU Compute Time, the GPU may be under-utilized.
+[01/18/2023-22:39:19] [V] H2D Latency: the latency for host-to-device data transfers for input tensors of a single query.
+[01/18/2023-22:39:19] [V] D2H Latency: the latency for device-to-host data transfers for output tensors of a single query.
+[01/18/2023-22:39:19] [V] Latency: the summation of H2D Latency, GPU Compute Time, and D2H Latency. This is the latency to infer a single query.
+[01/18/2023-22:39:19] [I]
+&&&& PASSED TensorRT.trtexec [TensorRT v8501] # D:\HPC\tools\TensorRT\TensorRT-8.5.1.7\bin\trtexec.exe --fp16 --loadEngine=../tensorrt/engine/RAFT_fp16.plan --verbose --minShapes=image1:1x3x256x256,image2:1x3x256x256 --optShapes=image1:1x3x440x1024,image2:1x3x440x1024 --maxShapes=image1:1x3x768x1024,image2:1x3x768x1024

@@ -18,3 +18,14 @@ polygraphy surgeon sanitize ../onnxruntime/RAFT_simplified.onnx ../onnxruntime/R
 
 # 测测 fp16
 polygraphy run ../onnxruntime/RAFT_simplified.onnx --fp16 --onnxrt --trt --workspace 1000000000 --save-engine=../tensorrt/engine/RAFT_fp16.plan --atol 0.1 --verbose --trt-min-shapes 'image1:[1,3,256,256]' 'image2:[1,3,256,256]' --trt-opt-shapes 'image1:[1,3,440,1024]' 'image2:[1,3,440,1024]' --trt-max-shapes 'image1:[1,3,768,1024]' 'image2:[1,3,768,1024]' --input-shapes 'image1:[1,3,440,1024]' 'image2:[1,3,440,1024]' --val-range 'image1:[0,255]' 'image2:[0,255]'
+# 测试 fp32
+polygraphy run ../onnxruntime/RAFT_simplified.onnx --onnxrt --trt --workspace 1000000000 --save-engine=../tensorrt/engine/RAFT_fp32.plan --atol 0.1 --verbose --trt-min-shapes 'image1:[1,3,256,256]' 'image2:[1,3,256,256]' --trt-opt-shapes 'image1:[1,3,440,1024]' 'image2:[1,3,440,1024]' --trt-max-shapes 'image1:[1,3,768,1024]' 'image2:[1,3,768,1024]' --input-shapes 'image1:[1,3,440,1024]' 'image2:[1,3,440,1024]' --val-range 'image1:[0,255]' 'image2:[0,255]'
+
+
+# 比较 fp32 和 fp16 速度
+trtexec --loadEngine=../tensorrt/engine/RAFT_fp32.plan --verbose --minShapes=image1:1x3x256x256,image2:1x3x256x256 --optShapes=image1:1x3x440x1024,image2:1x3x440x1024 --maxShapes=image1:1x3x768x1024,image2:1x3x768x1024 
+trtexec --fp16 --loadEngine=../tensorrt/engine/RAFT_fp16.plan --verbose --minShapes=image1:1x3x256x256,image2:1x3x256x256 --optShapes=image1:1x3x440x1024,image2:1x3x440x1024 --maxShapes=image1:1x3x768x1024,image2:1x3x768x1024 
+
+# 获取每一层的运行时间? 还有实际推理的结构
+trtexec --loadEngine=../tensorrt/engine/RAFT_fp32.plan --dumpProfile --shapes=image1:1x3x440x1024,image2:1x3x440x1024 --exportProfile=../tensorrt/engine/RAFT_fp32_profile.txt
+trtexec --loadEngine=../tensorrt/engine/RAFT_fp16.plan --dumpProfile --shapes=image1:1x3x440x1024,image2:1x3x440x1024 --exportProfile=../tensorrt/engine/RAFT_fp16_profile.txt

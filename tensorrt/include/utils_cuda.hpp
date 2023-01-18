@@ -1,5 +1,6 @@
 // C++
 #include <iostream>
+#include <functional>
 // CUDA
 #include <cuda_runtime_api.h>
 
@@ -98,3 +99,28 @@ public:
 		return false;
 	}
 };
+
+
+
+
+/* 尝试添加计时函数 */
+void cuda_timer(const std::function<void()>& work=[]{}, std::string message="") {
+	cudaEvent_t start, stop;
+	float elapsed_time = 0.0;
+
+	cudaEventCreate(&start);
+	cudaEventCreate(&stop);
+	cudaEventRecord(start, 0);
+
+	// 执行
+	work();
+
+	cudaEventRecord(stop, 0);
+	cudaEventSynchronize(stop);
+
+	cudaEventElapsedTime(&elapsed_time, start, stop);
+	printf("%s===> %3.1f ms\n", message.c_str(), elapsed_time);
+
+	cudaEventDestroy(start);
+	cudaEventDestroy(stop);
+}

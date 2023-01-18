@@ -141,11 +141,19 @@ cmake ..
 
 > ```tex
 > @inproceedings{teed2020raft,
->   title={Raft: Recurrent all-pairs field transforms for optical flow},
->   author={Teed, Zachary and Deng, Jia},
+> title={Raft: Recurrent all-pairs field transforms for optical flow},
+> author={Teed, Zachary and Deng, Jia},
+> booktitle={European conference on computer vision},
+> pages={402--419},
+> year={2020},
+> organization={Springer}
+> }
+> @inproceedings{butler2012naturalistic,
+>   title={A naturalistic open source movie for optical flow evaluation},
+>   author={Butler, Daniel J and Wulff, Jonas and Stanley, Garrett B and Black, Michael J},
 >   booktitle={European conference on computer vision},
->   pages={402--419},
->   year={2020},
+>   pages={611--625},
+>   year={2012},
 >   organization={Springer}
 > }
 > ```
