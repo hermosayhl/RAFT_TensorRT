@@ -34,22 +34,43 @@ target("raft_infer")
         add_links(
             "opencv_world" .. opencv_version
         )
+        add_includedirs(opencv_root .. "/include")
     end
-    add_includedirs(opencv_root .. "/include")
-
+    if is_os("linux") then
+        opencv_root    = "/home/dx/usrs/liuchang/tools/opencv/build/install"
+        add_linkdirs(opencv_root .. "/lib")
+        add_links(
+            "opencv_core",
+            "opencv_highgui",
+            "opencv_imgcodecs",
+            "opencv_imgproc"
+        )
+        add_includedirs(opencv_root .. "/include/opencv4")
+    end
+    
     -- 2. 添加 CUDA
-    cuda_root = "D:/HPC/tools/CUDA/10.2/development"
+    cuda_root = "/usr/local/cuda"
     add_includedirs(cuda_root .. "/include")
-    add_linkdirs(cuda_root .. "/lib/x64")
+    if is_os("windows") then
+        add_linkdirs(cuda_root .. "/lib/x64")
+    end
+    if is_os("linux") then
+        add_linkdirs(cuda_root .. "/lib64")
+    end
     add_links(
         "cudart"
     )
 
     -- 3. 添加 TensorRT
-    local tensorrt_root = "D:/HPC/tools/TensorRT/TensorRT-8.5.1.7"
+    local tensorrt_root = "/home/dx/usrs/liuchang/tools/TensorRT-8.5.3.1"
     add_includedirs(tensorrt_root .. "/include")
     add_includedirs(tensorrt_root .. "/samples/common")
-    add_linkdirs(tensorrt_root .. "/lib")
+    if is_os("windows") then
+        add_linkdirs(tensorrt_root .. "/lib")
+    end
+    if is_os("linux") then
+        add_linkdirs(tensorrt_root .. "/targets/x86_64-linux-gnu/lib")
+    end
     add_links(
         "nvinfer",
         "nvonnxparser",

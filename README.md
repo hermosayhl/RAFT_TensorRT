@@ -148,6 +148,21 @@ xmake run
 
 ![](markdown_images/xmake.gif)
 
+## Ubuntu
+
+Ubuntu 在 ~/.bashrc 中添加如下内容，做个记录
+
+```bash
+# OpenCV
+export PKG_CONFIG_PATH=/home/dx/usrs/liuchang/tools/opencv/build/install/lib/cmake/opencv4:$PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=/home/dx/usrs/liuchang/tools/opencv/build/install/lib:$LD_LIBRARY_PATH
+export OpenCV_DIR=/home/dx/usrs/liuchang/tools/opencv/build/install
+# TensorRT
+export TRT_ROOT=/home/dx/usrs/liuchang/tools/TensorRT-8.5.3.1
+export PATH=$TRT_ROOT/targets/x86_64-linux-gnu/bin:$PATH
+export LD_LIBRARY_PATH=$TRT_ROOT/targets/x86_64-linux-gnu/lib:$LD_LIBRARY_PATH
+```
+
 # 参考
 
 > ```tex
