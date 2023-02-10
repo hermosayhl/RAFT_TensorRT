@@ -8,3 +8,5 @@ build/
 .idea
 cmake-build-debug
 build_cmake
+.xmake
+.xmake/
