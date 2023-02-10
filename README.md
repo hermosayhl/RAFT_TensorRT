@@ -13,18 +13,17 @@
 # 环境（Environment）
 
 1. Pytorch                1.10.2
-2. CUDA                   10.2
+2. **CUDA**                   10.2
 3. cuDNN                 8.4.1
 4. Numpy                1.21.6
 5. onnx                    1.12.0
 6. onnx-simplifier  0.4.9
 7. onnxRuntime     1.13.1
-8. TensorRT             8.5.1.7
+8. **TensorRT**             8.5.1.7
 9. Polygraphy          0.43.1
-10. Microsoft Visual Studio 2019
+10. **Microsoft Visual Studio 2019**
 11. C++17
-12. OpenCV               [4.5.3](https://opencv.org/releases/)
-13. Windows 10
+12. **OpenCV**               [4.5.3](https://opencv.org/releases/)
 
 # Pytorch → ONNX
 
@@ -121,7 +120,7 @@ polygraphy surgeon sanitize ../onnxruntime/RAFT_simplified.onnx ../onnxruntime/R
 
 # TensorRT
 
-这一步的环境配置是最复杂的。
+## CMake Configuration
 
 进入[tensorrt](https://github.com/hermosayhl/RAFT_TensorRT/tree/main/tensorrt) 目录，建立 build 目录
 
@@ -136,6 +135,18 @@ cmake ..
 在 build 下点击生成的 **RAFT_TRT.sln**，用 Visual Studio 2019 打开，解决方案→ raft estimator→ CMakeLists.txt→项目→设为启动项目，最后 **生成→生成解决方案**。
 
 ![image-20230114180230858](markdown_images/image-20230114180230858.png)
+
+
+
+## XMake Configuration
+
+```bash
+xmake
+xmake build
+xmake run
+```
+
+![](markdown_images/xmake.gif)
 
 # 参考
 
