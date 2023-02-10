@@ -13,7 +13,7 @@
 
 // 测试 opencv 环境
 void test_opencv_environment() {
-	auto image1 = cv::imread("../../pytorch/demo-frames/frame_0016.png");
+	auto image1 = cv::imread("../pytorch/demo-frames/frame_0016.png");
 	if (image1.empty()) {
 		std::cout << "read failure!\n";
 		return;
@@ -30,7 +30,7 @@ void test_cuda_environment() {
 // 测试 tensorrt 环境
 void test_tensorrt_environment() {
 	/* TensorRT 引擎路径 */
-	const std::string tensorrt_engine_path("../engine/RAFT.plan");
+	const std::string tensorrt_engine_path("./engine/RAFT.plan");
 	assert(std::filesystem::exists(tensorrt_engine_path) && "engine file doesn't exist!");
 
 	/* 反序列化得到 tensorrt 引擎 */
@@ -45,7 +45,7 @@ int main() {
 	std::cout << "working dir==> " << std::filesystem::current_path().string() << "\n";
 	
 	/* TensorRT 引擎路径 */
-	const std::string tensorrt_engine_path("../engine/RAFT_fp32.plan");
+	const std::string tensorrt_engine_path("./engine/RAFT_fp32.plan");
 	assert(std::filesystem::exists(tensorrt_engine_path) && "engine file doesn't exist!");
 	
 	/* 反序列化得到 tensorrt 引擎 */
@@ -92,8 +92,8 @@ int main() {
 	AutoCudaMallocPointer<float> flow_buffer_gpu(output_element_count,   CUDA_DATA_TYPE::NORMAL_MEMORY, "flow_buffer_gpu");
 
 	/* 读取两帧图像 */
-	auto image1 = cv::imread("../images/input/frame_0016.png");
-	auto image2 = cv::imread("../images/input/frame_0017.png");
+	auto image1 = cv::imread("./images/input/frame_0016.png");
+	auto image2 = cv::imread("./images/input/frame_0017.png");
 	if (image1.empty() || image2.empty()) {
 		std::cout << "image1 or image2 is empty! please check!\n";
 		return -2;
@@ -158,7 +158,7 @@ int main() {
 	cv_show(flow_visualize);
 
 	/* 保存 */
-	cv::imwrite("../images/output/sintel.png", flow_visualize, { cv::IMWRITE_PNG_COMPRESSION, 0});
+	cv::imwrite("./images/output/sintel.png", flow_visualize, { cv::IMWRITE_PNG_COMPRESSION, 0});
 
 	return 0;
 }

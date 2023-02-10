@@ -1,4 +1,3 @@
-CMakeCache/
 CMakeCache
 *.exe
 *.ppt
@@ -6,7 +5,6 @@ CMakeCache
 build
 build/
 *.pdb
-.idea/
 .idea
-cmake-build-debug/
 cmake-build-debug
+build_cmake

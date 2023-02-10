@@ -1,0 +1,23 @@
+{
+    find_program_msvc_arch_x64_plat_windows_checktoolld = {
+        ["link.exe"] = [[D:\environments\C++\VS\Studio\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64\link.exe]]
+    },
+    find_program_msvc_arch_x64_plat_windows_checktoolcxx = {
+        ["cl.exe"] = [[D:\environments\C++\VS\Studio\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64\cl.exe]]
+    },
+    find_programver = {
+        ["D:\\environments\\C++\\VS\\Studio\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe"] = false
+    },
+    find_program = {
+        zig = false,
+        dmd = false,
+        ["D:\\environments\\C++\\VS\\Studio\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe"] = [[D:\environments\C++\VS\Studio\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64\cl.exe]],
+        ldc2 = false,
+        gdc = false,
+        ["cl.exe"] = [[D:\environments\C++\VS\Studio\VC\Tools\MSVC\14.29.30133\bin\HostX64\x64\cl.exe]]
+    },
+    ["lib.detect.has_flags"] = {
+        ["windows_x64_D:\\environments\\C++\\VS\\Studio\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe__cxx___-O2 -fp:fast"] = true,
+        ["windows_x64_D:\\environments\\C++\\VS\\Studio\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64\\cl.exe__cxx_cxflags__cl_sourceDependencies"] = true
+    }
+}
